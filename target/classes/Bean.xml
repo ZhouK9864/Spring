@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--第一种创建方法，默认构造函数来创建-->
+    <!--把对象的创建交给spring来管理-->
+
+    <bean id="accountDao" class="com.Myclud.Dao.impl.AccountDaoImpl"></bean>
+    <bean id="accountService" class="com.Myclud.Service.impl.AccountServiceImpl" scope="singleton" init-method="init" destroy-method="destory"></bean>
+    <!--第二种创建方法，使用普通工厂中的方法船舰对象（使用某个类中的方法创建对象，并存入spring容器中-->
+    <!--
+    <bean id="instanceFactory" class="com.Myclud.Factory.instanceFactory"></bean>
+    <bean id="accountService" factory-bean="instanceFactory" factory-method="getIAccountService"></bean>
+    -->
+
+    <!--第三种方式，使用工厂中的静态方法创建对象-->
+    <!--
+    <bean id="accountService" class="com.Myclud.Factory.StaticFactory" factory-method="getAccountService"></bean>
+    -->
+    <!--bean标签的scope属性
+        作用：用于指定bean的作用范围
+        取值：
+            singleton 单例
+            prototype 多例
+            request 作用域web应用的请求范围
+            session 作用域web应用的会话范围
+     -->
+    <!--bean对象的生命周期
+        单例对象
+            出生 容器创建对象出生
+            活着 只要容器还在，对象一直活着
+            死亡 容器销毁 对象死亡
+         多例对象
+      -->
+
+</beans>
