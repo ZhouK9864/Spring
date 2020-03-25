@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+        <!--注解配置-->
+<!--        <context:component-scan base-package="com.Myclud"></context:component-scan>-->
+<!--        <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">-->
+<!--                <constructor-arg name="ds" ref="dataSource"></constructor-arg>-->
+<!--        </bean>-->
+
+<!--        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+<!--                <property name="driverClass" value="com.mysql.jdbc.Driver"></property>-->
+<!--                <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"></property>-->
+<!--                <property name="user" value="root"></property>-->
+<!--                <property name="password" value="admin"></property>-->
+<!--        </bean>-->
+
+
+        <!--注解：告知spring在创建容器时要扫描的包，配置所需要的标签不是在beans的约束中-->
+<!--xml配置所用：
+
+-->
     <!--第一种创建方法，默认构造函数来创建-->
     <!--把对象的创建交给spring来管理-->
-
+    <!--
     <bean id="accountDao" class="com.Myclud.Dao.impl.AccountDaoImpl"></bean>
     <bean id="accountService" class="com.Myclud.Service.impl.AccountServiceImpl" scope="singleton" init-method="init" destroy-method="destory"></bean>
+    -->
     <!--第二种创建方法，使用普通工厂中的方法船舰对象（使用某个类中的方法创建对象，并存入spring容器中-->
     <!--
-    <bean id="instanceFactory" class="com.Myclud.Factory.instanceFactory"></bean>
-    <bean id="accountService" factory-bean="instanceFactory" factory-method="getIAccountService"></bean>
+    <bean id="insFactory" class="com.Myclud.Factory.insFactory"></bean>
+    <bean id="accountService" factory-bean="insFactory" factory-method="getIAccountService"></bean>
     -->
 
     <!--第三种方式，使用工厂中的静态方法创建对象-->
@@ -32,6 +52,83 @@
             活着 只要容器还在，对象一直活着
             死亡 容器销毁 对象死亡
          多例对象
+            出生 使用对象时spring创建
+            或者 对象在使用过程中一直活着
+            死亡 对象长时间不用
       -->
+    <!--依赖注入:
+                Dependency Injection
+         IOC的作用：
+                降低程序的耦合
+         依赖关系的管理：
+                以后都交给spring来维护
+         在当前类需要用到其他类的对象，由spring为我们提供，我们只需要在配置文件中说明。
+         依赖关系的维护:
+                就称之为依赖注入
+         依赖注入：
+            能注入的数据有三类
+                基本数据类型和String
+                其他的bean类型（在配置问价中或者注解配置过的bean）
+                复杂类型/复合类型
+            注入的方式：有三种
+                第一种：使用构造函数提供
+                第二种：使用set方法提供
+                第三章：使用注解提供
+         -->
+        <!--构造函数注入：
+            使用标签：constructor-arg
+            标签中出现的位置：bean标签的内部
+            标签中的属性
+                type：用于指定要注入的数据的数据类型，改数据类型也是构造函数中某个或者某些参数的类型
+                index：用于指定压迫式注入的数据给构造函数中指定的索引位置的参数赋值，索引的位置是从零开始的。
+                name：用于指定给构造函数中指定名称的参数赋值。
+                ===============================以上三个用于指定构造函数中哪个参数赋值==========================
+                value：用于提供基本类型和String类型的数据
+                ref：引用关联的bean对象
+            优势：
+                在获取bean对象时，注入数据是必须的操作，否则对象无法创建成功。
+            弊端：
+                改变了bean对象的实例化方式，在创建是用不到某些属性，也必须提供否则无法创建对象。
+
+        <bean id="accountService" class="com.Myclud.Service.impl.AccountServiceImpl">
+            <constructor-arg name="name" value="test"></constructor-arg>  //类中属性
+            <constructor-arg name="time" ref="now"></consturctor-arg>   //日期对象比较特殊
+        </bean>
+        <bean id="now" class="java.util.Date"></bean>
+        -->
+        <!--set方法注入   (更常用)
+            标签：property
+            出现的位置：bean标签的内部
+            标签的属性：
+                name：用于指定给构造函数中指定名称的参数赋值。
+                value：用于提供基本类型和String类型的数据
+                ref：引用关联的bean对象
+        <bean id="accoutService" class="com.Myclud.Service.impl.AccountServiceImpl">
+                <property name="name" value="Test"></property>     //name为类中属性
+        </bean>
+        -->
+        <!--复杂类型注入/集合注入
+        <bean id="accountService" class="com.Myclud.Service.impl.AccountServiceImpl">
+            <property name="myArray">           //arry  标签可以和 map 互换
+                <array>
+                    <value>AAA</value>
+                </array>
+            </property>
+
+            <property name="myMap">             //map
+                <map>
+                    <entry key="xxx" value="xxx"></entry>
+                </map>
+            </property>
+
+            <property name="myProps">           //props
+                <props>
+                    <prop key="Testc">aaa</prop>
+                <props>
+            </property>
+        </bean>
+        -->
+
+
 
 </beans>

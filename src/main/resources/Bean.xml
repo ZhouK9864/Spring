@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+        <!--注解配置-->
+<!--        <context:component-scan base-package="com.Myclud"></context:component-scan>-->
+<!--        <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">-->
+<!--                <constructor-arg name="ds" ref="dataSource"></constructor-arg>-->
+<!--        </bean>-->
+
+<!--        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+<!--                <property name="driverClass" value="com.mysql.jdbc.Driver"></property>-->
+<!--                <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"></property>-->
+<!--                <property name="user" value="root"></property>-->
+<!--                <property name="password" value="admin"></property>-->
+<!--        </bean>-->
+
+
+        <!--注解：告知spring在创建容器时要扫描的包，配置所需要的标签不是在beans的约束中-->
+<!--xml配置所用：
+
+-->
     <!--第一种创建方法，默认构造函数来创建-->
     <!--把对象的创建交给spring来管理-->
-
+    <!--
     <bean id="accountDao" class="com.Myclud.Dao.impl.AccountDaoImpl"></bean>
     <bean id="accountService" class="com.Myclud.Service.impl.AccountServiceImpl" scope="singleton" init-method="init" destroy-method="destory"></bean>
+    -->
     <!--第二种创建方法，使用普通工厂中的方法船舰对象（使用某个类中的方法创建对象，并存入spring容器中-->
     <!--
-    <bean id="instanceFactory" class="com.Myclud.Factory.instanceFactory"></bean>
-    <bean id="accountService" factory-bean="instanceFactory" factory-method="getIAccountService"></bean>
+    <bean id="insFactory" class="com.Myclud.Factory.insFactory"></bean>
+    <bean id="accountService" factory-bean="insFactory" factory-method="getIAccountService"></bean>
     -->
 
     <!--第三种方式，使用工厂中的静态方法创建对象-->
@@ -89,7 +109,7 @@
         -->
         <!--复杂类型注入/集合注入
         <bean id="accountService" class="com.Myclud.Service.impl.AccountServiceImpl">
-            <property name="myArray">           //arry
+            <property name="myArray">           //arry  标签可以和 map 互换
                 <array>
                     <value>AAA</value>
                 </array>

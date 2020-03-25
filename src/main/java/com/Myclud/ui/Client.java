@@ -18,7 +18,6 @@ public class Client {
         ApplicationContext ac = new ClassPathXmlApplicationContext("Bean.xml");
         IAccountService as = ac.getBean("accountService",IAccountService.class);
 //        IAccountDao adao = ac.getBean("accountDao",IAccountDao.class);
-        as.saveAccount();
-//        System.out.println(adao);
+        as.findAllAccount();
     }
 }
