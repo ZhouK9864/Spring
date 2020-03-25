@@ -5,17 +5,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
         <!--注解配置-->
-<!--        <context:component-scan base-package="com.Myclud"></context:component-scan>-->
-<!--        <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">-->
-<!--                <constructor-arg name="ds" ref="dataSource"></constructor-arg>-->
-<!--        </bean>-->
+        <context:component-scan base-package="com.Myclud"></context:component-scan>
+        <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">
+                <constructor-arg name="ds" ref="dataSource"></constructor-arg>
+        </bean>
 
-<!--        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
-<!--                <property name="driverClass" value="com.mysql.jdbc.Driver"></property>-->
-<!--                <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"></property>-->
-<!--                <property name="user" value="root"></property>-->
-<!--                <property name="password" value="admin"></property>-->
-<!--        </bean>-->
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+                <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"></property>
+                <property name="user" value="root"></property>
+                <property name="password" value="admin"></property>
+        </bean>
 
 
         <!--注解：告知spring在创建容器时要扫描的包，配置所需要的标签不是在beans的约束中-->

@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository("accountDao")
 public class AccountDaoImpl implements IAccountDao {
+
     @Resource
     private QueryRunner runner;
 

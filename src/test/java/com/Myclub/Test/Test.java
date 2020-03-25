@@ -32,8 +32,8 @@ public class Test {
 
     @Before
     public void init(){
-//        ApplicationContext ac = new ClassPathXmlApplicationContext("Bean.xml");
-        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+        ApplicationContext ac = new ClassPathXmlApplicationContext("Bean.xml");  //xml配置
+//        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);   //注解配置
         as = ac.getBean("accountService",IAccountService.class);
     }
 
@@ -68,6 +68,6 @@ public class Test {
 
     @org.junit.Test
     public void testDelete(){
-        as.deleteAccount(2);
+        as.deleteAccount(5);
     }
 }
