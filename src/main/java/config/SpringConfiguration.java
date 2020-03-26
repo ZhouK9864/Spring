@@ -24,6 +24,7 @@ import java.awt.*;
 @ComponentScan("com.Myclud") //{,"config"}扫描子包，区分出主配置文件和子配置文件。
 @Import(JdbcConfig.class)    //不扫描的话就用这个注解。
 @PropertySource("classpath:JdbcConfig.properties")
+@EnableAspectJAutoProxy
 public class SpringConfiguration {
 
     @Bean(name = "runner")

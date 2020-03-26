@@ -13,12 +13,12 @@ public interface IAccountDao {
 
     List<Account> findAllAccount();
 
-    /*
+    /**
      * 根据id查询一个
      */
     Account findAccountById(Integer accountId);
 
-    /*
+    /**
      * 保存
      */
     void saveAccount(Account account);
@@ -26,6 +26,9 @@ public interface IAccountDao {
     void updateAccount(Account account);
 
     void deleteAccount(Integer accountId);
-
+    /**
+     * 根据名称查询账户
+     */
+    Account finaAccountByName(String accountName);
 
 }

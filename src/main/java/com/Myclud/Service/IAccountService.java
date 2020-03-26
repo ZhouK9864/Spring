@@ -6,21 +6,21 @@ import javax.annotation.Resource;
 import java.util.List;
 
 public interface IAccountService {
-    /*
+    /**
      *模拟保存
      */
 //    void saveAccount();
-        /*
-        * 查询所有
-        */
+    /**
+     * 查询所有
+     */
     List<Account> findAllAccount();
 
-    /*
+    /**
      * 根据id查询一个
      */
     Account findAccountById(Integer accountId);
 
-    /*
+    /**
      * 保存
      */
     void saveAccount(Account account);
@@ -28,5 +28,10 @@ public interface IAccountService {
     void updateAccount(Account account);
 
     void deleteAccount(Integer accountId);
+
+    /**
+     * 转账
+     */
+    void tansfer(String sourceName, String targetName, Float money);
 
 }

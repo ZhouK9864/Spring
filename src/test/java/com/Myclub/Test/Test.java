@@ -16,6 +16,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.env.Environment;
@@ -41,7 +42,7 @@ public class Test {
 //    public void init(){
 //        ApplicationContext ac = new ClassPathXmlApplicationContext("Bean.xml");  //xml配置
 //       ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);   //注解配置
-//        as = ac.getBean("accountService",IAccountService.class);
+//       as = ac.getBean("accountService",IAccountService.class);
 //    }
 
     @org.junit.Test
@@ -77,4 +78,10 @@ public class Test {
     public void testDelete(){
         as.deleteAccount(5);
     }
+
+    @org.junit.Test
+    public void testTransfer(){
+        as.tansfer("ddd","aaa", (float) 50);
+    }
+
 }
